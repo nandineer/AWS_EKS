@@ -4,7 +4,8 @@
 
 **Create an EKS cluster and deploy 2048 game into that cluster**
 
-Step 1: Create an EKS cluster
+**Step 1: Create an EKS cluster**
+
 
 Name: <yourname>-eks-cluster-1
 Use K8S version 1.25
@@ -20,13 +21,11 @@ Choose default VPC, Choose 2 or 3 subnets
 Choose a security group which open the ports 22, 80, 8080
 cluster endpoint access: public
 
-# For VPC CNI, CoreDNS and kube-proxy, choose the default versions, For CNI, latest and default are 
-# different. But go with default.
 
 Click 'Create'. This process will take 10-12 minutes. Wait till your cluster shows up as Active. 
 
 
-Step 2 Add Node Groups to our cluster
+**Step 2 Add Node Groups to our cluster**
 
 Now, lets add the worker nodes where the pods can run
 
@@ -70,9 +69,7 @@ sudo yum install nano -y
 
 
 
-Step 4: Create a new POD in EKS for the 2048 game
-
-
+**Step 4: Create a new POD in EKS for the 2048 game**
 # create the config file in YAML to deploy 2048 game pod into the cluster
 nano 2048-pod.yaml
 
@@ -101,7 +98,7 @@ kubectl apply -f 2048-pod.yaml
 kubectl get pods
 
 
-Step 5: Setup Load Balancer Service
+**Step 5: Setup Load Balancer Service**
 
 nano mygame-svc.yaml  
 
@@ -134,7 +131,7 @@ kubectl describe svc mygame-svc
 # setup to be complete)
 
 
-Cleanup
+**Cleanup**
 
 # Clean up all the resources created in the task
 kubectl get pods
