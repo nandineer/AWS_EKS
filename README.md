@@ -74,18 +74,18 @@ sudo yum install nano -y
 nano 2048-pod.yaml
 
 ### code starts ###
-apiVersion: v1
-kind: Pod
-metadata:
-   name: 2048-pod
-   labels:
-      app: 2048-ws
-spec:
-   containers:
-   - name: 2048-container
-     image: blackicebird/2048
-     ports:
-       - containerPort: 80
+        apiVersion: v1
+        kind: Pod
+        metadata:
+           name: 2048-pod
+           labels:
+              app: 2048-ws
+        spec:
+           containers:
+           - name: 2048-container
+             image: blackicebird/2048
+             ports:
+               - containerPort: 80
 
 ### code ends ###
 
@@ -104,18 +104,18 @@ nano mygame-svc.yaml
 
 ### code starts ###
 
-apiVersion: v1
-kind: Service
-metadata:
-   name: mygame-svc
-spec:
-   selector:
-      app: 2048-ws
-   ports:
-   - protocol: TCP
-     port: 80
-     targetPort: 80
-   type: LoadBalancer
+            apiVersion: v1
+            kind: Service
+            metadata:
+               name: mygame-svc
+            spec:
+               selector:
+                  app: 2048-ws
+               ports:
+               - protocol: TCP
+                 port: 80
+                 targetPort: 80
+               type: LoadBalancer
 
 ### code ends ###
 
