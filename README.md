@@ -48,11 +48,11 @@ Step 3: Authenticate to this cluster
 Reference:
 https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html
 
-Open cloudshell
 
-# Type on your AWS CLI window 
+
+# Open cloudshell Type on your AWS CLI window 
 aws sts get-caller-identity
-# observe your account and user id details
+observe your account and user id details
 
 # Create a  kubeconfig file where it stores the credentials for EKS:
 # kubeconfig configuration allows you to connect to your cluster using the kubectl command line.
