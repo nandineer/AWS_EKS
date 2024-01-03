@@ -43,7 +43,7 @@ Choose default values for other fields
 Node group creation may take 2-3 minutes
 
 
-Step 3: Authenticate to this cluster
+**Step 3: Authenticate to this cluster**
 
 Reference:
 https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html
@@ -127,8 +127,7 @@ kubectl describe svc mygame-svc
 
 
 # Go to EC2 console. get the DNS name of ELB and paste the DNS into address bar of the browser
-# It will show the 2048 game. You can play. (need to wait for 2-3 minutes for the 
-# setup to be complete)
+# It will show the 2048 game. You can play. (need to wait for 2-3 minutes for the setup to be complete)
 
 
 **Cleanup**
