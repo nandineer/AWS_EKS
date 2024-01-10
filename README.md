@@ -52,27 +52,27 @@ https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html
 
 # Open cloudshell Type on your AWS CLI window 
 To get your account and user id details
-aws sts get-caller-identity
+    aws sts get-caller-identity
 
 
 # Create a  kubeconfig file where it stores the credentials for EKS:
 # kubeconfig configuration allows you to connect to your cluster using the kubectl command line.
 
-**aws eks update-kubeconfig --region <<region-code >> --name <<my-cluster>>**
-ex: aws eks update-kubeconfig --region us-east-1 --name unus-eks-cluster-1 
+    **aws eks update-kubeconfig --region <<region-code >> --name <<my-cluster>>**
+    ex: aws eks update-kubeconfig --region us-east-1 --name unus-eks-cluster-1 
 
 
 # see if you can get the nodes you created
-kubectl get nodes
+    kubectl get nodes
 
 # Install nano editor in cloudshell. We will need this in the next task
-sudo yum install nano -y
+    sudo yum install nano -y
 
 
 
 **Step 4: Create a new POD in EKS for the 2048 game**
 # create the config file in YAML to deploy 2048 game pod into the cluster
-nano 2048-pod.yaml
+    nano 2048-pod.yaml
 
 ### code starts ###
         apiVersion: v1
@@ -92,16 +92,16 @@ nano 2048-pod.yaml
 
 
 # apply the config file to create the pod
-kubectl apply -f 2048-pod.yaml
-#pod/2048-pod created
+    kubectl apply -f 2048-pod.yaml
+    #pod/2048-pod created
 
 # view the newly created pod
-kubectl get pods
+    kubectl get pods
 
 
 **Step 5: Setup Load Balancer Service**
 
-nano mygame-svc.yaml  
+    nano mygame-svc.yaml  
 
 ### code starts ###
 
@@ -121,10 +121,10 @@ nano mygame-svc.yaml
 ### code ends ###
 
 # apply the config file
-kubectl apply -f mygame-svc.yaml
+    kubectl apply -f mygame-svc.yaml
 
 # view details of the modified service
-kubectl describe svc mygame-svc
+    kubectl describe svc mygame-svc
 
 
 # Go to EC2 console. get the DNS name of ELB and paste the DNS into address bar of the browser
