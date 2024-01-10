@@ -71,25 +71,6 @@ To get your account and user id details
 
 
 **Step 4: Create a new POD in EKS for the 2048 game**
-# create the config file in YAML to deploy 2048 game pod into the cluster
-    nano 2048-pod.yaml
-
-### code starts ###
-        apiVersion: v1
-        kind: Pod
-        metadata:
-           name: 2048-pod
-           labels:
-              app: 2048-ws
-        spec:
-           containers:
-           - name: 2048-container
-             image: blackicebird/2048
-             ports:
-               - containerPort: 80
-
-### code ends ###
-
 
 # apply the config file to create the pod
     kubectl apply -f 2048-pod.yaml
@@ -101,24 +82,6 @@ To get your account and user id details
 
 **Step 5: Setup Load Balancer Service**
 
-    nano mygame-svc.yaml  
-
-### code starts ###
-
-            apiVersion: v1
-            kind: Service
-            metadata:
-               name: mygame-svc
-            spec:
-               selector:
-                  app: 2048-ws
-               ports:
-               - protocol: TCP
-                 port: 80
-                 targetPort: 80
-               type: LoadBalancer
-
-### code ends ###
 
 # apply the config file
     kubectl apply -f mygame-svc.yaml
