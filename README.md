@@ -51,14 +51,15 @@ https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html
 
 
 # Open cloudshell Type on your AWS CLI window 
+To get your account and user id details
 aws sts get-caller-identity
-observe your account and user id details
+
 
 # Create a  kubeconfig file where it stores the credentials for EKS:
 # kubeconfig configuration allows you to connect to your cluster using the kubectl command line.
-aws eks update-kubeconfig --region region-code --name my-cluster
-ex: aws eks update-kubeconfig --region us-east-1 --name unus-eks-cluster-1 # Use the cluster name you just 
-created
+
+**aws eks update-kubeconfig --region <<region-code >> --name <<my-cluster>>**
+ex: aws eks update-kubeconfig --region us-east-1 --name unus-eks-cluster-1 
 
 
 # see if you can get the nodes you created
