@@ -36,51 +36,53 @@ Click 'Create'. This process will take 10-12 minutes. Wait till your cluster sho
 
 
 
-**Step 3: Authenticate to this cluster**
+# Step 3: Authenticate to this cluster**
 
 
-# Open cloudshell Type on your AWS CLI window 
+**Open cloudshell Type on your AWS CLI window**
 To get your account and user id details
     aws sts get-caller-identity
 
 
-# Create a  kubeconfig file where it stores the credentials for EKS:
-# Kubeconfig configuration allows you to connect to your cluster using the kubectl command line.
+**Create a  kubeconfig file where it stores the credentials for EKS:**
+Kubeconfig configuration allows you to connect to your cluster using the kubectl command line.
 
     **aws eks update-kubeconfig --region <<region-code >> --name <<my-cluster>>**
     ex: aws eks update-kubeconfig --region us-east-1 --name unus-eks-cluster-1 
 
 
-# To Check the pods
+**To Check the pods**
     kubectl get nodes
 
-# Install nano editor in cloudshell. We will need this in the next task
+**Install nano editor in cloudshell. We will need this in the next task**
     sudo yum install nano -y
 
 
 
-**Step 4: Create a new POD in EKS for the 2048 game**
+# Step 4: Create a new POD in EKS for the 2048 game**
 
-# Apply the config file to create the pod
+**Apply the config file to create the pod**
     kubectl apply -f 2048-pod.yaml
     #pod/2048-pod created
 
-# View the newly created pod
+ **View the newly created pod**
     kubectl get pods
 
 
-**Step 5: Setup Load Balancer Service**
+# Step 5: Setup Load Balancer Service
 
 
-# Apply the config file
-    kubectl apply -f mygame-svc.yaml
+**Apply the config file**
 
-# View details of the modified service
-    kubectl describe svc mygame-svc
+    kubectl apply -f 2048-svc.yaml
+
+**View details of the modified service**
+
+    kubectl describe svc 2048-svc
 
 
-# Go to EC2 console. get the DNS name of ELB and paste the DNS into address bar of the browser.
-# It will show the 2048 game. You can play. (need to wait for 2-3 minutes for the setup to be complete)
+Go to EC2 console, get the DNS name of ELB and paste the DNS into address bar of the browser.
+It will show the 2048 game. You can play. (need to wait for 2-3 minutes for the setup to be complete)
 
 
 
