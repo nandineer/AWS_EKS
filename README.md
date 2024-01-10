@@ -79,13 +79,13 @@ To get your account and user id details
     kubectl describe svc mygame-svc
 
 
-# Go to EC2 console. get the DNS name of ELB and paste the DNS into address bar of the browser
+# Go to EC2 console. get the DNS name of ELB and paste the DNS into address bar of the browser.
 # It will show the 2048 game. You can play. (need to wait for 2-3 minutes for the setup to be complete)
 
 
-**Cleanup**
 
 # Clean up all the resources created in the task
+
 kubectl get pods
 kubectl delete -f 2048-pod.yaml
 
