@@ -1,53 +1,42 @@
 # AWS_EKS
 
-
-
 **Create an EKS cluster and deploy 2048 game into that cluster**
 
 **Step 1: Create an EKS cluster**
 
 
-Name: <yourname>-eks-cluster-1
-Use K8S version 1.25
-
-Create an IAM role 'eks-cluster-role' with 1 policy attached: AmazonEKSClusterPolicy
-Create another IAM role 'eks-node-grp-role' with 3 policies attached: 
-(Allows EC2 instances to call AWS services on your behalf.)
-    - AmazonEKSWorkerNodePolicy
-    - AmazonEC2ContainerRegistryReadOnly
-    - AmazonEKS_CNI_Policy
-
-Choose default VPC, Choose 2 or 3 subnets
-Choose a security group which open the ports 22, 80, 8080
-cluster endpoint access: public
-
+1.	Name: <yourname>-eks-cluster-1
+2.	Use K8S version 1.25
+3.	Create an IAM role 'eks-cluster-role' with 1 policy attached:
+-	 AmazonEKSClusterPolicy
+4.	Create another IAM role 'eks-node-grp-role' with 3 policies attached: 
+5.	(Allows EC2 instances to call AWS services on your behalf.)
+-	AmazonEKSWorkerNodePolicy
+-	AmazonEC2ContainerRegistryReadOnly
+-	AmazonEKS_CNI_Policy
+6.	Choose default VPC, Choose 2 or 3 subnets
+7.	Choose a security group which open the ports 22, 80, 8080
+8.	cluster endpoint access: public
 
 Click 'Create'. This process will take 10-12 minutes. Wait till your cluster shows up as Active. 
 
 
 **Step 2 Add Node Groups to our cluster**
 
-Now, lets add the worker nodes where the pods can run
+1.	Now, lets add the worker nodes where the pods can run
+2.	Open the cluster > Compute > Add NodeGrp
+3.	Name: <yourname>-eks-nodegrp-1 
+4.	Select the role you already created
+5.	Leave default values for everything else
+6.	AMI - choose the default 1 (Amazon Linux 2)
+7.	change desired/minimum/maximum to 1 (from 2)
+8.	Enable SSH access. Choose a security group which allwos 22, 80, 8080
+9.	Choose default values for other fields 
+10.	Click on create
 
-Open the cluster > Compute > Add NodeGrp
-Name: <yourname>-eks-nodegrp-1 
-Select the role you already created
-Leave default values for everything else
-
-AMI - choose the default 1 (Amazon Linux 2)
-change desired/minimum/maximum to 1 (from 2)
-Enable SSH access. Choose a security group which allwos 22, 80, 8080
-
-Choose default values for other fields 
-
-Node group creation may take 2-3 minutes
 
 
 **Step 3: Authenticate to this cluster**
-
-Reference:
-https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html
-
 
 
 # Open cloudshell Type on your AWS CLI window 
@@ -56,13 +45,13 @@ To get your account and user id details
 
 
 # Create a  kubeconfig file where it stores the credentials for EKS:
-# kubeconfig configuration allows you to connect to your cluster using the kubectl command line.
+# Kubeconfig configuration allows you to connect to your cluster using the kubectl command line.
 
     **aws eks update-kubeconfig --region <<region-code >> --name <<my-cluster>>**
     ex: aws eks update-kubeconfig --region us-east-1 --name unus-eks-cluster-1 
 
 
-# see if you can get the nodes you created
+# To Check the pods
     kubectl get nodes
 
 # Install nano editor in cloudshell. We will need this in the next task
@@ -72,21 +61,21 @@ To get your account and user id details
 
 **Step 4: Create a new POD in EKS for the 2048 game**
 
-# apply the config file to create the pod
+# Apply the config file to create the pod
     kubectl apply -f 2048-pod.yaml
     #pod/2048-pod created
 
-# view the newly created pod
+# View the newly created pod
     kubectl get pods
 
 
 **Step 5: Setup Load Balancer Service**
 
 
-# apply the config file
+# Apply the config file
     kubectl apply -f mygame-svc.yaml
 
-# view details of the modified service
+# View details of the modified service
     kubectl describe svc mygame-svc
 
 
