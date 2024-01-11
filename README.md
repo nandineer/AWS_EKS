@@ -81,7 +81,7 @@ Kubeconfig configuration allows you to connect to your cluster using the kubectl
     kubectl describe svc 2048-svc
 
 
-Go to EC2 console, get the DNS name of ELB and paste the DNS into address bar of the browser.
+Go to Load balancer , get the DNS name of ELB and paste the DNS into address bar of the browser.
 It will show the 2048 game. You can play. (need to wait for 2-3 minutes for the setup to be complete)
 
 
